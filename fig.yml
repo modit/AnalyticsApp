@@ -3,7 +3,9 @@ web:
   links:
    - db
   ports:
-   - "3000:3000"
+   - "3000:80"
+  expose:
+    "3000:80"
   environment: 
    NODE_ENV: development
 db:
