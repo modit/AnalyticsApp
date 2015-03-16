@@ -3,12 +3,14 @@ web:
   links:
    - db
   ports:
-   - "3000:80"
+   - "3000:3000"
   expose:
-    "3000:80"
+   - "3000"
   environment: 
    NODE_ENV: development
+   DOCKER_DB: 'db'
 db:
   image: mongo
   ports: 
    - "27017:27017"
+  command: mongod --smallfiles

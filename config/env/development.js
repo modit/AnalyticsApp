@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/mean-dev',
+	db: 'mongodb://' + (process.env.DOCKER_DB || 'localhost') + '/mean-dev',
 	app: {
 		title: 'mean - Development Environment'
 	},
