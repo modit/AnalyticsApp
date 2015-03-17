@@ -4,7 +4,6 @@ MAINTAINER Matthias Luebken, matthias@catalyst-zero.com
 
 WORKDIR /home/mean
 
-
 # Install Mean.JS Prerequisites
 RUN npm install -g grunt-cli
 RUN npm install -g bower
@@ -19,7 +18,7 @@ ADD bower.json /home/mean/bower.json
 RUN bower install --config.interactive=false --allow-root
 
 # Make everything available for start
-ADD . /usr/src/app
+ADD . /home/mean
 
 # currently only works for development
 ENV NODE_ENV development

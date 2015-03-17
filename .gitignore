@@ -14,7 +14,7 @@ lib-cov
 *.DS_Store
 npm-debug.log
 
-
+.git
 
 .netbeans
 nbproject
