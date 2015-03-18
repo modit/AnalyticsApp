@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+	database = (process.env.DOCKER_DB || 'localhost'),
 	app: {
 		title: 'mean',
 		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
