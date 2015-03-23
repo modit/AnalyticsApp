@@ -11,9 +11,9 @@ module.exports = {
 			seed: process.env.USER_SEEDS || 5000
 		}
 	},
-	CORE_HOST: process.env.CORE_HOST || 'mod.it',
-	API_HOST: process.env.API_HOST || 'localhost',
-	TARGET_VERSION: process.env.TARGET_VERSION || 7,
+	CORE_HOST: (process.env.CORE_HOST || 'mod.it'),
+	API_HOST: (process.env.API_HOST || 'localhost'),
+	TARGET_VERSION: (process.env.TARGET_VERSION || 5),
 	app: {
 		title: 'Modit Administrator',
 		description: 'Manages Modit users and activities',
@@ -26,8 +26,8 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-			//	'public/lib/bootstrap/dist/css/bootstrap.css',
-			//	'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				'public/lib/c3/c3.css',
+				'public/lib/angular-chart.js/dist/angular-chart.css', 
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -49,21 +49,20 @@ module.exports = {
 			]
 		},
 		css: [
-			'public/lib/c3/c3.css',
+			//'public/lib/c3/c3.css',
 			'public/modules/**/css/*.css',
 			'public/styles/app.css',
-			'public/lib/angular-chart.js/dist/angular-chart.css', 
+			//'public/lib/angular-chart.js/dist/angular-chart.css', 
 
 		],
 		js: [
 			'public/config.js',
 			'public/application.js',
-
+			//'public/modules/*/*.js',
+			//'public/modules/*/*[!tests]*/*.js',
 			'public/app/**/*.js',
 			// pull in templates
-			'public/templates.js'
-			//'public/modules/*/*.js',
-			//'public/modules/*/*[!tests]*/*.js'
+			'public/templates.js'			
 		],
 		tests: [
 			'public/lib/angular-mocks/angular-mocks.js',

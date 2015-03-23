@@ -10,7 +10,7 @@
 	"scripts": {
 		"start": "grunt",
 		"test": "grunt test",
-		"postinstall": "bower install --config.interactive=false"
+		"postinstall": "bower install --config.interactive=false --allow-root"
 	},
 	"dependencies": {
 		"express": "~4.10.1",
@@ -45,8 +45,7 @@
 		"q": "~1.2.x",
 		"moment": "~2.9.x",
 		"chance": "~0.7.x",
-		"fibers": "~1.0.x",
-		"webworker-threads": "~0.5.x"
+		"fibers": "~1.0.x"
 	},
 	"devDependencies": {
 		"supertest": "~0.14.0",

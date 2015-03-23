@@ -8,9 +8,10 @@ WORKDIR /home/mean
 RUN npm install -g grunt-cli
 RUN npm install -g bower
 
-# Install Mean.JS packages
+# Install node packages
 ADD package.json /home/mean/package.json
-RUN npm install
+ADD .npmrc /home/mean/.npmrc
+RUN npm install 
 
 # Manually trigger bower. Why doesnt this work via npm install?
 ADD .bowerrc /home/mean/.bowerrc
