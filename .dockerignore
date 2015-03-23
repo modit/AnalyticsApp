@@ -1,5 +1,7 @@
 .git
 LICENSE
+node_modules
+public/	lib
 VERSION
 README.md
 Changelog.md

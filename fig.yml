@@ -10,7 +10,7 @@ web:
    - "35729"
   environment: 
    NODE_ENV: development
-   DOCKER_DB: 'db'
+   DB_1_PORT_27017_TCP_ADDR: 'db'
    PORT: 80
 db:
   image: mongo

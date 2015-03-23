@@ -22,17 +22,17 @@
 	<meta property="og:title" content="{{title}}">
 	<meta property="og:description" content="{{description}}">
 	<meta property="og:url" content="{{url}}">
-	<meta property="og:image" content="/img/brand/logo.png">
+	<meta property="og:image" content="{{logo}}">
 	<meta property="og:type" content="website">
 
 	<!-- Twitter META -->
 	<meta name="twitter:title" content="{{title}}">
 	<meta name="twitter:description" content="{{description}}">
 	<meta name="twitter:url" content="{{url}}">
-	<meta name="twitter:image" content="/img/brand/logo.png">
+	<meta name="twitter:image" content="{{logo}}">
 
 	<!-- Fav Icon -->
-	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<link href="{{favicon}}" rel="shortcut icon" type="image/x-icon">
 
 	<!--Application CSS Files-->
 	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
@@ -41,15 +41,21 @@
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+	
+	<!--[if lt IE 9]><script src="excanvas.js"></script><![endif]-->
+	<!--[if lt IE 9]><script src="es5-shim.js"></script><![endif]-->
+
 </head>
 
 <body class="ng-cloak">
-	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-	<section class="content">
-		<section class="container">
+	<!-- <header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header> -->
+	<!-- <section class="content">
+		<section class="container"> -->
+		<section>
 			{% block content %}{% endblock %}
 		</section>
-	</section>
+	<!-- 	</section>
+	</section> -->
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
@@ -57,12 +63,30 @@
 	</script>
 
 	<!--Application JavaScript Files-->
-	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %} 
+	{% for jsFile in jsFiles %}
+	<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %} 
 
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->
 	<script type="text/javascript" src="http://{{request.hostname}}:35729/livereload.js"></script>
 	{% endif %}
+
+	<script>
+     	angular.module('modit.api.v1')
+			.config(function(ApiConfigProvider){
+				ApiConfigProvider.set({
+                	base: '//{{request.hostname}}:{{port}}/api/v1'
+             	})
+         	});
+  
+         angular.module('modit.admin')
+            .constant('CORE_HOST',  '{{CORE_HOST}}')
+            .constant('API_HOST',   '{{API_HOST}}:{{port}}');
+
+         angular.module('modit.config')
+        	.constant('TARGET_VERSION', '{{TARGET_VERSION}}');            
+	</script>
+
 </body>
 
 </html>

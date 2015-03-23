@@ -1,11 +1,23 @@
 'use strict';
 
 module.exports = {
-	database = (process.env.DOCKER_DB || 'localhost'),
+	api: '/api/v1',
+	images: 'images/',
+	angularRoutes: [
+		'/welcome'
+	],
+	seeds: {
+		user: {
+			seed: process.env.USER_SEEDS || 5000
+		}
+	},
+	CORE_HOST: process.env.CORE_HOST || 'mod.it',
+	API_HOST: process.env.API_HOST || 'localhost',
+	TARGET_VERSION: process.env.TARGET_VERSION || 7,
 	app: {
-		title: 'mean',
-		description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
-		keywords: 'MongoDB, Express, AngularJS, Node.js'
+		title: 'Modit Administrator',
+		description: 'Manages Modit users and activities',
+		keywords: 'Modit, Deployment, Staging, Docker'
 	},
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
@@ -14,8 +26,8 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+			//	'public/lib/bootstrap/dist/css/bootstrap.css',
+			//	'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -26,17 +38,32 @@ module.exports = {
 				'public/lib/angular-sanitize/angular-sanitize.js', 
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+				'public/lib/ngToast/dist/ngToast.js', 
+				'public/lib/moment/moment.js', 
+				'public/lib/c3/c3.js', 
+				'public/lib/d3/d3.js', 
+				'public/lib/Chart.js/Chart.js',
+				'public/lib/angular-chart.js/dist/angular-chart.js', 
+				'public/lib/pluralize/pluralize.js', 
 			]
 		},
 		css: [
-			'public/modules/**/css/*.css'
+			'public/lib/c3/c3.css',
+			'public/modules/**/css/*.css',
+			'public/styles/app.css',
+			'public/lib/angular-chart.js/dist/angular-chart.css', 
+
 		],
 		js: [
 			'public/config.js',
 			'public/application.js',
-			'public/modules/*/*.js',
-			'public/modules/*/*[!tests]*/*.js'
+
+			'public/app/**/*.js',
+			// pull in templates
+			'public/templates.js'
+			//'public/modules/*/*.js',
+			//'public/modules/*/*[!tests]*/*.js'
 		],
 		tests: [
 			'public/lib/angular-mocks/angular-mocks.js',

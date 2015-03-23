@@ -8,7 +8,11 @@ var passport = require('passport');
 module.exports = function(app) {
 	// User Routes
 	var users = require('../../app/controllers/users.server.controller');
-
+	var config = require('../../config/env/all');
+	// mock user
+	app.route(config.api + '/user').get(users.mock);
+	app.route(config.api + '/login').get(users.mockLogin);
+	app.route(config.api + '/logout').get(users.mockLogout);
 	// Setting up the users profile api
 	app.route('/users/me').get(users.me);
 	app.route('/users').put(users.update);

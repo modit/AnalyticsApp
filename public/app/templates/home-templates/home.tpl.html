@@ -1,0 +1,237 @@
+<div >
+  
+  <div ng-show="TARGET_VERSION == 2">
+    <div class="admin-home">
+      <p class="lead">Metrics Dashboard</p>
+      
+      <div ng-include="templateBaseUrl + 'home-templates/includes/filters.tpl.html'"></div>
+      
+      <hr>
+      <p ng-show="!data.$resolved">
+        Loading...
+      </p>
+      <div ng-include="templateBaseUrl + 'home-templates/includes/table-simple.tpl.html'"></div>
+      
+    </div>
+  </div>
+  <div ng-show="TARGET_VERSION == 3 || TARGET_VERSION == 4">
+    <div class="admin-home">
+      <p class="lead">Metrics Dashboard</p>
+      
+      
+      <div ng-include="templateBaseUrl + 'home-templates/includes/filters.tpl.html'"></div>
+      
+      
+      <hr>
+      <p ng-show="!data.$resolved">
+        Loading...
+      </p>
+      <div class="container-fluid">
+        <tabset ng-show="data.$resolved">
+        <tab heading="Chart" active="tabs[1].active">
+          <div ng-include="templateBaseUrl + 'home-templates/includes/chart-d3.tpl.html'"></div>
+        </tab>
+        <tab heading="Table" active="tabs[0].active">
+          <div ng-show="complexChart" ng-include="templateBaseUrl + 'home-templates/includes/table.tpl.html'"></div>
+          <div ng-show="!complexChart" ng-include="templateBaseUrl + 'home-templates/includes/table-simple.tpl.html'"></div>
+        </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+
+  <div ng-show="TARGET_VERSION == 5 || TARGET_VERSION == 6">
+    <div class="admin-home">
+      <p class="lead">Metrics Dashboard
+        <span>
+          <a class="btn-link text-small" ng-click="optionsCollapsed = !optionsCollapsed">
+            {{optionsCollapsed ? 'Filter': 'Hide Filters'}}
+          </a>
+        </span>
+      </p>
+      
+      <div ng-init="optionsCollapsed = true" collapse="optionsCollapsed">
+        <div ng-include="templateBaseUrl + 'home-templates/includes/filters.tpl.html'"></div>
+        <!-- <div ng-include="templateBaseUrl + 'home-templates/includes/secondary-filters.tpl.html'"></div> -->
+      </div>
+      
+      <hr>
+      <p ng-show="!data.$resolved">
+        Loading...
+      </p>
+      <div class="container-fluid">
+        <tabset ng-show="data.$resolved">
+          <tab heading="Chart" active="tabs[1].active">
+            <div ng-include="templateBaseUrl + 'home-templates/includes/chart-d3.tpl.html'"></div>
+          </tab>
+          <tab heading="Table" active="tabs[0].active">
+            <div ng-show="complexChart" ng-include="templateBaseUrl + 'home-templates/includes/table.tpl.html'"></div>
+            <div ng-show="!complexChart" ng-include="templateBaseUrl + 'home-templates/includes/table-simple.tpl.html'"></div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+  <div ng-show="TARGET_VERSION == 7 || TARGET_VERSION == 8" >
+    <div class="admin-home">
+      <p class="lead">Metrics Dashboard
+        <span>
+          <a class="btn-link text-small" ng-click="optionsCollapsed = !optionsCollapsed">
+            {{optionsCollapsed ? 'Filter': 'Hide Filters'}}
+          </a>
+        </span>
+      </p>
+      
+      <div ng-init="optionsCollapsed = true" collapse="optionsCollapsed">
+        <div ng-include="templateBaseUrl + 'home-templates/includes/filters.tpl.html'"></div>
+        <!-- <div ng-include="templateBaseUrl + 'home-templates/includes/secondary-filters.tpl.html'"></div> -->
+      </div>
+      
+      <hr>
+      <p ng-show="!data.$resolved">
+        Loading...
+      </p>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-offset-1 col-md-10">
+            <tabset ng-show="data.$resolved">
+            <tab heading="Chart" active="tabs[1].active">
+            <div ng-include="templateBaseUrl + 'home-templates/includes/chart-char.js.tpl.html'"></div>
+            </tab>
+            <tab heading="Table" active="tabs[0].active">
+            <div ng-show="complexChart" ng-include="templateBaseUrl + 'home-templates/includes/table.tpl.html'"></div>
+            <div ng-show="!complexChart" ng-include="templateBaseUrl + 'home-templates/includes/table-simple.tpl.html'"></div>
+            </tab>
+            </tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-if="false"  class="admin-home">
+    <p class="lead">Metrics Dashboard
+      
+      <span>
+        <a class="btn-link text-small" ng-click="optionsCollapsed = !optionsCollapsed">
+          {{optionsCollapsed ? 'Filter': 'Hide Filters'}}
+        </a>
+      </span></p>
+      <div ng-init="optionsCollapsed = true" collapse="optionsCollapsed">
+        <div class="row">
+          <div class="form-group col-sm-3">
+            <label class="form-label">Metric</label>
+            <select class="form-control" ng-model="metric">
+              <option value="user">Users</option>
+            </select>
+          </div>
+          
+          <div class="form-group col-sm-3">
+            <label class="form-label">Date Range</label>
+            <select class="form-control" ng-model="range" ng-options="o.label for o in rangeOptions">
+            </select>
+          </div>
+          
+          <div class="form-group col-sm-3" ng-show="range.label === 'Custom'">
+            <label class="form-label">Start</label>
+            <input type="text" class="form-control" datepicker-popup show-weeks="false" ng-model="range.start" />
+          </div>
+          <div class="form-group col-sm-3" ng-show="range.label === 'Custom'">
+            <label class="form-label">End</label>
+            <input type="text" class="form-control" datepicker-popup show-weeks="false" ng-model="range.end" />
+          </div>
+        </div>
+      </div>
+      <hr>
+      <p ng-show="!data.$resolved">
+        Loading...
+      </p>
+      <tabset ng-show="data.$resolved">
+      <tab heading="Table" active="tabs[0].active">
+      <div ng-show="data.$resolved && data.length" class="results" ng-class="{ 'trail1': resultInt1, 'trail2': resultInt2 }">
+        
+        <div class="results-header">
+          
+          <div class="row lead">
+            <div class="col-xs-2">Date</div>
+            <div class="var-col">New</div>
+            
+            <div class="var-col">Total</div>
+          </div>
+          
+          <div class="row" ng-show="resultInt1">
+            <div class="col-xs-2">&nbsp;</div>
+            <div class="var-col">
+              <div class="row">
+                <div>1d</div>
+                <div>{{resultInt1}}d</div>
+                <div ng-show="resultInt2">{{resultInt2}}d</div>
+              </div>
+            </div>
+            
+            <div class="var-col">
+              <div class="row" ng-show="method.label != 'Sum'">
+                <div>1d</div>
+                <div>{{resultInt1}}d</div>
+                <div ng-show="resultInt2">{{resultInt2}}d</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="results-main">
+          <div class="row day" ng-repeat="day in filtered = (data | slice:trail | orderBy:'-date':true) ">
+            <div class="col-xs-2">{{day.date | date:'mediumDate'}}</div>
+            <div class="var-col">
+              <div class="row text-success">
+                <div new="">{{day.new | number}}</div>
+                <div new="trail1" ng-show="resultInt1" >{{day | trailing:method:resultInt1:'new' | number}}</div>
+                <div new="trail2" ng-show="resultInt2">{{day | trailing:method:resultInt2:'new' | number}}</div>
+              </div>
+            </div>
+            
+            
+            <div class="var-col">
+              <div class="row text-primary">
+                <div tot="">{{day.total | number}}</div>
+                <div tot="trail1" ng-show="resultInt1 && method.label != 'Sum'">{{day | trailing:method:resultInt1:'total' | number}}</div>
+                <div tot="trail2" ng-show="resultInt2 && method.label != 'Sum'">{{day | trailing:method:resultInt2:'total'| number}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="results-total" ng-if="filtered.length > 1">
+          <hr>
+          <div class="row day" ng-repeat="type in ['Total', 'Average', 'Maximum', 'Minimum']">
+            <div class="col-xs-2"><b>{{type}}</b></div>
+            <div class="var-col">
+              <div class="row text-success">
+                <div><b>{{getTotal(type, 'new') | number}}</b></div>
+                <div ng-show="resultInt1 && (type !== 'Total' || method.label != 'Sum')"><b>{{getTotal(type, 'new', 'trail1') | number}}</b></div>
+                <div ng-show="resultInt2 && (type !== 'Total' || method.label != 'Sum')"><b>{{getTotal(type, 'new', 'trail2') | number}}</b></div>
+              </div>
+            </div>
+            
+            <div class="var-col">
+              <div class="row text-primary">
+                <div><b>{{getTotal(type, 'tot') | number}}</b></div>
+                <div ng-show="resultInt1 && method.label != 'Sum'"><b>{{getTotal(type, 'tot', 'trail1') | number}}</b></div>
+                <div ng-show="resultInt2 && method.label != 'Sum'"><b>{{getTotal(type, 'tot', 'trail2') | number}}</b></div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      </tab>
+      <tab heading="Graph" active="tabs[1].active">
+      <div style="padding-top: 30px">
+        <div modit-chart="chart"></div>
+      </div>
+      
+      </tab>
+      
+      </tabset>
+    </div>
+  </div>

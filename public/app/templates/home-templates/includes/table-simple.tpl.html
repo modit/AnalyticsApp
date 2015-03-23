@@ -1,0 +1,35 @@
+
+<div ng-show="data.$resolved && data.length" class="results" ng-class="{ 'trail1': resultInt1, 'trail2': resultInt2 }">
+  
+  <div class="results-header">
+    
+    <div class="row lead">
+      <div class="col-xs-2">Date</div>
+      <div class="col-xs-2"></div>
+      <div class="var-col">New</div>
+      <div class="col-xs-2"></div>
+      <div class="var-col">Total</div>
+    </div>
+  
+  </div>
+  
+  <div class="results-main">
+    <div class="row day" ng-repeat="day in filtered = (data | slice:trail | orderBy:'-date':true) ">
+      <div class="col-xs-2">{{day.date | date:'mediumDate'}}</div>
+      <div class="col-xs-2"></div>
+      <div class="var-col">
+        <div class="row text-success">
+          <div new="">{{day.new | number}}</div>
+        </div>
+      </div>
+      <div class="col-xs-2"></div>
+      <div class="var-col">
+        <div class="row text-primary">
+          <div tot="">{{day.total | number}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+</div>
+

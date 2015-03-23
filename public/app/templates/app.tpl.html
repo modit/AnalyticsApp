@@ -1,0 +1,10 @@
+<div class="admin-header col-lg-12">
+	<a ng-href="//{{CORE_HOST}}" class="pull-left">
+		<img class="modit-logo" ng-src="{{logo}}" >
+	</a>
+	<span class="pull-left text-warning text-large admin-tag"><b>Admin</b></span>
+	
+	<div ui-view="usernav"></div>
+</div>
+
+<div ui-view="main" class="admin-main col-lg-12"></div>

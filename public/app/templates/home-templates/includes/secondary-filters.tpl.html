@@ -1,0 +1,25 @@
+<p>
+  <a class="btn-link" ng-click="optionsCollapsed = !optionsCollapsed">
+    {{optionsCollapsed ? 'Show options': 'Hide options'}}
+  </a>
+</p>
+<div collapse="optionsCollapsed">
+  <div class="row">
+    <div class="form-group col-sm-3">
+      <label>Trailing Intervals (days)</label>
+      <div class="row">
+        <div class="col-xs-6"><input type="number" class="form-control" ng-model="interval1" min="2"></div>
+        <div class="col-xs-6"><input type="number" class="form-control" ng-Model="interval2" min="{{interval1 + 1}}"></div>
+      </div>
+    </div>
+    <div class="form-group col-sm-3">
+      <label>Trailing Method</label>
+      <select class="form-control" ng-model="$parent.method" ng-options="o.label for o in trailingOptions">
+      </select>
+    </div>
+    <div class="form-group col-sm-2">
+      <div><label>&nbsp;</label></div>
+      <button type="button" class="btn btn-success" ng-click="query()">Apply</button>
+    </div>
+  </div>
+</div>

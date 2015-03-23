@@ -1,7 +1,7 @@
 {
-	"name": "mean",
+	"name": "modit-admin",
 	"version": "0.0.1",
-	"description": "Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js",
+	"description": "Modit Administrator",
 	"dependencies": {
 		"bootstrap": "~3",
 		"angular": "~1.2",
@@ -11,8 +11,18 @@
 		"angular-animate": "~1.2",
 		"angular-touch": "~1.2",
 		"angular-sanitize": "~1.2",
-		"angular-bootstrap": "~0.11.2",
+		"angular-bootstrap": "~0.10.0",
+		"ui-bootstrap": "0.10.0",
 		"angular-ui-utils": "~0.1.1",
-		"angular-ui-router": "~0.2.11"
+		"angular-ui-router": "~0.2.11",
+		"ngtoast": "~1.2.x",
+    	"pluralize": "~1.1.x",
+    	"angular-scroll": "~0.6.x",
+    	"d3": "~3.4.x",
+    	"c3": "0.3.0",
+    	"moment": "~2.1.x",
+    	"Chart.js": "1.0.1",
+    	"angular-chart.js": "~0.5.x",
+    	"famous-angular": "~0.5.x"
 	}
 }
