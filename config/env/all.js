@@ -13,7 +13,7 @@ module.exports = {
 	},
 	CORE_HOST: (process.env.CORE_HOST || 'mod.it'),
 	API_HOST: (process.env.API_HOST || 'localhost'),
-	TARGET_VERSION: (process.env.TARGET_VERSION || 5),
+	TARGET_VERSION: (process.env.TARGET_VERSION || 1),
 	app: {
 		title: 'Modit Administrator',
 		description: 'Manages Modit users and activities',
