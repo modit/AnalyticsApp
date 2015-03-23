@@ -4,7 +4,7 @@
 	"description": "Modit Administrator",
 	"dependencies": {
 		"bootstrap": "~3",
-		"angular": "~1.2",
+		"angular": "~1.2.x",
 		"angular-resource": "~1.2",
 		"angular-mocks": "~1.2",
 		"angular-cookies": "~1.2",
@@ -22,7 +22,6 @@
     	"c3": "0.3.0",
     	"moment": "~2.1.x",
     	"Chart.js": "1.0.1",
-    	"angular-chart.js": "~0.5.x",
-    	"famous-angular": "~0.5.x"
+    	"angular-chart.js": "~0.5.x"
 	}
 }

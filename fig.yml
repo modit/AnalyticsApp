@@ -12,6 +12,7 @@ web:
    NODE_ENV: development
    DB_1_PORT_27017_TCP_ADDR: 'db'
    PORT: 80
+   TARGET_VERSION: 1
 db:
   image: mongo
   command: mongod --smallfiles

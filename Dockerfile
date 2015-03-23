@@ -9,14 +9,16 @@ RUN npm install -g grunt-cli
 RUN npm install -g bower
 
 # Install node packages
+ADD .bowerrc /home/mean/.bowerrc
+ADD bower.json /home/mean/bower.json
 ADD package.json /home/mean/package.json
 ADD .npmrc /home/mean/.npmrc
 RUN npm install 
 
 # Manually trigger bower. Why doesnt this work via npm install?
-ADD .bowerrc /home/mean/.bowerrc
-ADD bower.json /home/mean/bower.json
-RUN bower install --config.interactive=false --allow-root
+#ADD .bowerrc /home/mean/.bowerrc
+#ADD bower.json /home/mean/bower.json
+#RUN bower install --config.interactive=false --allow-root
 
 # Make everything available for start
 ADD . /home/mean
