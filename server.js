@@ -45,16 +45,25 @@ function connect(attempt, callback) {
 
             attempt = attempt || 0;
 
-            var timeoutSecs = Math.exp(attempt);
+            if (attempt <= 5) {
+            	
+            	var timeoutSecs = Math.exp(attempt);
 
-            console.log(chalk.red('ERROR! with attempt ' + attempt + ' ' + err));
+            	console.log(chalk.red('ERROR! with attempt ' + attempt + ' ' + err));
 
-            console.log(chalk.red('Retrying in ' + timeoutSecs + 's.'));
+            	console.log(chalk.red('Retrying in ' + timeoutSecs + 's.'));
 
-            setTimeout(connect, timeoutSecs * 1000, attempt + 1);
+            	setTimeout(connect, timeoutSecs * 1000, attempt + 1);
+            
+            } else {
+	            console.error(chalk.red('Could not connect to MongoDB!'));
+		        return console.log(chalk.red(err));
+            }
+
+            
 
         } else {
-            callback(db);
+            return callback(db);
         }
 
     });
@@ -63,6 +72,8 @@ function connect(attempt, callback) {
 }
 
 connect(0, function(db) {
+
+	console.log(chalk.green('DB ' + config.db + ' is connected'));
     // Init the express application
     var app = require('./config/express')(db);
 
