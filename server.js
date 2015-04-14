@@ -49,7 +49,7 @@ function connect(attempt, callback) {
 
             console.log(chalk.red('ERROR! with attempt ' + attempt + ' ' + err));
 
-            console.log(chalk.orange('Retrying in ' + timeoutSecs + 's.'));
+            console.log(chalk.red('Retrying in ' + timeoutSecs + 's.'));
 
             setTimeout(connect, timeoutSecs * 1000, attempt + 1);
 
