@@ -12,29 +12,73 @@ var init = require('./config/init')(),
  * Main application entry file.
  * Please note that the order of loading is important.
  */
+// var attempt;
+// // Bootstrap db connection
+// var db = mongoose.connect(config.db, function(err) {
+//     if (err) {
 
-// Bootstrap db connection
-var db = mongoose.connect(config.db, function(err) {
-    if (err) {
-        console.error(chalk.red('Could not connect to MongoDB!'));
-        console.log(chalk.red(err));
-    }
+//         attempt = attempt || 0;
+
+//         var timeoutSecs = Math.exp(attempt);
+
+//         console.log(chalk.red('ERROR! ' + err));
+
+//         console.log(chalk.red('Retrying in ' + timeoutSecs + 's.'));
+
+
+//         setTimeout(connect, timeoutSecs * 1000, attempt + 1);
+
+//         //console.error(chalk.red('Could not connect to MongoDB!'));
+//         // console.log(chalk.red(err));
+//     }
+
+// });
+
+// retries with exponential backoff if connection fails
+function connect(attempt, callback) {
+
+    console.log(chalk.green('Connecting to: ' + config.db + ' ...'));
+
+    var db = mongoose.connect(config.db, function(err, res) {
+
+        if (err) {
+
+            attempt = attempt || 0;
+
+            var timeoutSecs = Math.exp(attempt);
+
+            console.log(chalk.red('ERROR! with attempt ' + attempt + ' ' + err));
+
+            console.log(chalk.orange('Retrying in ' + timeoutSecs + 's.'));
+
+            setTimeout(connect, timeoutSecs * 1000, attempt + 1);
+
+        } else {
+            callback(db);
+        }
+
+    });
+
+
+}
+
+connect(0, function(db) {
+    // Init the express application
+    var app = require('./config/express')(db);
+
+    // Bootstrap passport config
+    require('./config/passport')();
+
+    // Start the app by listening on <port>
+    app.listen(config.port);
+
+    // Expose app
+    exports = module.exports = app;
+
+    // call for bootstrapping
+    require('./config/bootstrap')(console.log);
+
+    // Logging initialization
+    console.log('Modit Administrator started on port ' + config.port);
+
 });
-
-// Init the express application
-var app = require('./config/express')(db);
-
-// Bootstrap passport config
-require('./config/passport')();
-
-// Start the app by listening on <port>
-app.listen(config.port);
-
-// Expose app
-exports = module.exports = app;
-
-// call for bootstrapping
-require('./config/bootstrap')(console.log);
-
-// Logging initialization
-console.log('Modit Administrator started on port ' + config.port);
